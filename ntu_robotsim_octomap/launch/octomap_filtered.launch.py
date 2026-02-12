@@ -20,12 +20,12 @@ def generate_launch_description():
 
         # ground filter parameters
         DeclareLaunchArgument('ground_filter/distance', default_value='0.3'),
-        DeclareLaunchArgument('ground_filter/angle', default_value='0.2'),
+        DeclareLaunchArgument('ground_filter/angle', default_value='0.15'),
         DeclareLaunchArgument('ground_filter/plane_distance', default_value='0.3'),
 
         DeclareLaunchArgument('compress_map', default_value='True'),
         DeclareLaunchArgument('incremental_2D_projection', default_value='True'),
-        DeclareLaunchArgument('sensor_model/max_range', default_value='8.0'), # default -1.0
+        DeclareLaunchArgument('sensor_model/max_range', default_value='4.0'), # default -1.0
         DeclareLaunchArgument('sensor_model/hit', default_value='0.7'),
         DeclareLaunchArgument('sensor_model/miss', default_value='0.4'),
         DeclareLaunchArgument('sensor_model/min', default_value='0.12'),
@@ -45,6 +45,7 @@ def generate_launch_description():
             output='screen',
             remappings=[('cloud_in', LaunchConfiguration('input_cloud_topic'))],
             parameters=[{'resolution': LaunchConfiguration('resolution'),
+                         'use_sim_time': True,
                          'frame_id': LaunchConfiguration('frame_id'),
                          'base_frame_id': LaunchConfiguration('base_frame_id'),
                          'height_map': LaunchConfiguration('height_map'),

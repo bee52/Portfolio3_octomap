@@ -45,16 +45,18 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(ntu_share, 'launch', 'octomap_filtered.launch.py'))
     )
-
+    #
     nav2_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(nav2_share, 'launch', 'navigation_launch.py')),
         launch_arguments={
-            'use_sim_time': use_sim_time,
+            'use_sim_time': 'true',
             'autostart': 'true',
             'params_file': nav2_params
         }.items()
     )
+
+
 
     return LaunchDescription([
         declare_use_sim_time,
@@ -63,5 +65,6 @@ def generate_launch_description():
         robot_launch,
         odom_to_tf_launch,
         octomap_filtered_launch,
-        nav2_launch
+        nav2_launch,
+
     ])
